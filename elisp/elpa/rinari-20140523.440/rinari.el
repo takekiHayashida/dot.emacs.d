@@ -404,13 +404,13 @@ Looks up login information from your conf/database.sql file."
              (server (or (cdr (assoc "host" database-alist)) "localhost"))
              (port (cdr (assoc "port" database-alist))))
         (with-temp-buffer
-          (set (make-local-variable 'sql-user) (or (cdr (assoc "username" database-alist)) "root"))
-          (set (make-local-variable 'sql-password) (or (cdr (assoc "password" database-alist)) ""))
+          (defvar (make-local-variable 'sql-user) (or (cdr (assoc "username" database-alist)) "root"))
+          (defvar (make-local-variable 'sql-password) (or (cdr (assoc "password" database-alist)) ""))
           (set (make-local-variable 'sql-password) (when (> (length sql-password) 0) sql-password))
-          (set (make-local-variable 'sql-database) (or (cdr (assoc "database" database-alist))
+          (defvar (make-local-variable 'sql-database) (or (cdr (assoc "database" database-alist))
                                                        (concat (file-name-nondirectory (rinari-root))
                                                                "_" environment)))
-          (set (make-local-variable 'sql-server) (if port (concat server ":" port) server))
+          (defvar (make-local-variable 'sql-server) (if port (concat server ":" port) server))
           (funcall
            (intern (concat "sql-"
                            (cond
