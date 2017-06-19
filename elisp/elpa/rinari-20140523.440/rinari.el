@@ -404,9 +404,6 @@ Looks up login information from your conf/database.sql file."
              (server (or (cdr (assoc "host" database-alist)) "localhost"))
              (port (cdr (assoc "port" database-alist))))
         (with-temp-buffer
-          (defvar sql-password "")
-          (defvar sql-database "")
-          (defvar sql-server "")
           (set (make-local-variable 'sql-user) (or (cdr (assoc "username" database-alist)) "root"))
           (set (make-local-variable 'sql-password) (or (cdr (assoc "password" database-alist)) ""))
           (set (make-local-variable 'sql-password) (when (> (length sql-password) 0) sql-password))
